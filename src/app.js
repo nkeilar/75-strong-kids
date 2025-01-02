@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Check, Star, Heart, Book, Apple, Droplet, PlayCircle, Home, Smile, Award, ChevronDown, ChevronUp } from 'lucide-react';
+import { createElement } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Check, Star, Heart, Book, Apple, Droplet, PlayCircle, Home, Smile, Award, ChevronDown, ChevronUp } from 'lucide';
+
 
 const DailyChecklist = () => {
   // Load saved state from localStorage
@@ -96,7 +98,7 @@ const DailyChecklist = () => {
   };
 
   const handleNextDay = () => {
-    const allTasksCompleted = Object.values(tasks).every(category => 
+    const allTasksCompleted = Object.values(tasks).every(category =>
       Object.values(category).every(task => task)
     );
 
@@ -104,7 +106,7 @@ const DailyChecklist = () => {
       setShowConfetti(true);
       const today = new Date().toDateString();
       setLastCompletedDate(today);
-      
+
       setTimeout(() => {
         setShowConfetti(false);
         setDay(prev => prev + 1);
@@ -152,7 +154,7 @@ const DailyChecklist = () => {
           </div>
         </div>
       )}
-      
+
       <div className="mb-6 text-center">
         <h1 className="text-3xl font-bold text-blue-600 mb-2">75 Strong Kids Challenge</h1>
         <div className="flex justify-center items-center gap-4">
@@ -167,7 +169,7 @@ const DailyChecklist = () => {
       <div className="space-y-4">
         {/* Nutrition Section */}
         <div className="bg-green-50 rounded-lg overflow-hidden">
-          <button 
+          <button
             className="w-full p-4 flex justify-between items-center text-left"
             onClick={() => toggleSection('nutrition')}
           >
@@ -177,7 +179,7 @@ const DailyChecklist = () => {
             </h2>
             {expandedSection === 'nutrition' ? <ChevronUp /> : <ChevronDown />}
           </button>
-          
+
           {expandedSection === 'nutrition' && (
             <div className="p-4 pt-0 space-y-3">
               <TaskItem
@@ -210,7 +212,7 @@ const DailyChecklist = () => {
 
         {/* Movement Section */}
         <div className="bg-blue-50 rounded-lg overflow-hidden">
-          <button 
+          <button
             className="w-full p-4 flex justify-between items-center text-left"
             onClick={() => toggleSection('movement')}
           >
@@ -220,7 +222,7 @@ const DailyChecklist = () => {
             </h2>
             {expandedSection === 'movement' ? <ChevronUp /> : <ChevronDown />}
           </button>
-          
+
           {expandedSection === 'movement' && (
             <div className="p-4 pt-0 space-y-3">
               <TaskItem
@@ -241,7 +243,7 @@ const DailyChecklist = () => {
 
         {/* Learning Section */}
         <div className="bg-purple-50 rounded-lg overflow-hidden">
-          <button 
+          <button
             className="w-full p-4 flex justify-between items-center text-left"
             onClick={() => toggleSection('learning')}
           >
@@ -251,7 +253,7 @@ const DailyChecklist = () => {
             </h2>
             {expandedSection === 'learning' ? <ChevronUp /> : <ChevronDown />}
           </button>
-          
+
           {expandedSection === 'learning' && (
             <div className="p-4 pt-0">
               <TaskItem
@@ -266,7 +268,7 @@ const DailyChecklist = () => {
 
         {/* Responsibility Section */}
         <div className="bg-orange-50 rounded-lg overflow-hidden">
-          <button 
+          <button
             className="w-full p-4 flex justify-between items-center text-left"
             onClick={() => toggleSection('responsibility')}
           >
@@ -276,7 +278,7 @@ const DailyChecklist = () => {
             </h2>
             {expandedSection === 'responsibility' ? <ChevronUp /> : <ChevronDown />}
           </button>
-          
+
           {expandedSection === 'responsibility' && (
             <div className="p-4 pt-0">
               <TaskItem
@@ -291,7 +293,7 @@ const DailyChecklist = () => {
 
         {/* Kindness Section */}
         <div className="bg-pink-50 rounded-lg overflow-hidden">
-          <button 
+          <button
             className="w-full p-4 flex justify-between items-center text-left"
             onClick={() => toggleSection('kindness')}
           >
@@ -301,7 +303,7 @@ const DailyChecklist = () => {
             </h2>
             {expandedSection === 'kindness' ? <ChevronUp /> : <ChevronDown />}
           </button>
-          
+
           {expandedSection === 'kindness' && (
             <div className="p-4 pt-0">
               <TaskItem
@@ -359,4 +361,7 @@ const TaskItem = ({ label, examples, checked, onClick }) => (
   </div>
 );
 
-export default DailyChecklist;
+// Create root and render
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(createElement(DailyChecklist));
