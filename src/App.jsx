@@ -1,7 +1,5 @@
-import { createElement } from 'react';
-import { createRoot } from 'react-dom/client';
-import { Check, Star, Heart, Book, Apple, Droplet, PlayCircle, Home, Smile, Award, ChevronDown, ChevronUp } from 'lucide';
-
+import React, { useState, useEffect } from 'react';
+import { Check, Star, Heart, Book, Apple, Droplet, PlayCircle, Home, Smile, Award, ChevronDown, ChevronUp } from 'lucide-react';
 
 const DailyChecklist = () => {
   // Load saved state from localStorage
@@ -361,7 +359,4 @@ const TaskItem = ({ label, examples, checked, onClick }) => (
   </div>
 );
 
-// Create root and render
-const container = document.getElementById('root');
-const root = createRoot(container);
-root.render(createElement(DailyChecklist));
+export default DailyChecklist;
