@@ -4,6 +4,14 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/75-strong-kids/'  // This matches your GitHub Pages path
+  base: '/75-strong-kids/',  // This matches your GitHub Pages path
+  build: {
+    assetsDir: 'assets',
+    rollupOptions: {
+      input: {
+        main: './index.html'
+      }
+    }
+  }
 });
 
